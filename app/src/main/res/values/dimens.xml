@@ -2,4 +2,7 @@
 <resources>
     <dimen name="list_element_string_size">18sp</dimen>
     <dimen name="button_string_size">16sp</dimen>
+    <dimen name="page_title_string_size">30sp</dimen>
+    <dimen name="general_string_size">18sp</dimen>
+    <dimen name="table_margin_top">10dp</dimen>
 </resources>

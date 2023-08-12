@@ -1,5 +1,23 @@
 <resources>
     <string name="app_name">BMRCalculator</string>
-    <string name="btn_create">Create</string>
+    <string name="btn_create_string">Create</string>
 
+    <string name="creating_title_string">Creating Record</string>
+    <string name="creating_name_string">Name : </string>
+    <string name="creating_age_string">Age : </string>
+    <string name="creating_gender_string">Gender : </string>
+    <string name="creating_height_string">Height(cm) : </string>
+    <string name="creating_weight_string">Weight(kg) : </string>
+    <string name="creating_male_rbtn_string">Male</string>
+    <string name="creating_female_rbtn_string">Female</string>
+    <string name="edittext_hint_string">Type here...</string>
+    <string name="btn_submit_string">Submit</string>
+    <string name="btn_cancel_string">Cancel</string>
+    <string name="rbtn_male_string">Male</string>
+    <string name="rbtn_female_string">Female</string>
+
+    <string name="result_title_string">Result</string>
+    <string name="result_BMI_string">BMI : </string>
+    <string name="result_BMR_string">BMR : </string>
+    <string name="btn_save_string">Save</string>
 </resources>
