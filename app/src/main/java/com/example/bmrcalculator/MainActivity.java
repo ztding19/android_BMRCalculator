@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         initViewElement();
         RefreshList();
 
-
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,16 +53,28 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
+        dataList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //Toast.makeText(MainActivity.this, data[i], Toast.LENGTH_SHORT);
+                Bundle bundle = new Bundle();
+                bundle.putString("name", data[i].split("\n")[0].toString());
+                Intent it = new Intent();
+                it.putExtras(bundle);
+                it.setClass(MainActivity.this, ModifyActivity.class);
+                startActivity(it);
+            }
+        });
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        RefreshList();
+    }
     //https://stackoverflow.com/questions/57697796/how-to-make-a-new-thread-android-studio
     //https://stackoverflow.com/questions/21278442/how-to-fetch-a-simple-json-data-in-android-from-php?rq=3
-
-    public static void testPublic(){
-        Log.v("test", "testPublic: ");
-
-    }
 
     private void showList() {
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data);
@@ -88,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
             br.close();
             String resp = sb.toString();
-            Log.d("Load data", "loadURLData: " + resp);
+            //Log.d("Load data", "loadURLData: " + resp);
             conn.disconnect();
             return resp;
         }catch (IOException iOEx) {

@@ -131,7 +131,7 @@ public class ResultActivity extends AppCompatActivity {
 
     }
 
-    public void executeHttpPost(String path, HashMap<String, String> map) {
+    public static String executeHttpPost(String path, HashMap<String, String> map) {
         try {
             URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -160,14 +160,15 @@ public class ResultActivity extends AppCompatActivity {
                 result.append(line);
             }
             conn.disconnect();
-            Log.d("Save Record", "result : " + result.toString());
-            Log.d("Save Record", "map : " + getJSONString(map));
+            Log.d("HttpPost", "map : " + getJSONString(map));
+            return result.toString();
         } catch (IOException e) {
             Log.v("HttpPost", e.toString());
+            return "";
         }
     }
 
-    private String getJSONString(HashMap<String, String> map) {
+    public static String getJSONString(HashMap<String, String> map) {
         JSONObject json = new JSONObject();
         for(String key:map.keySet()) {
             try {

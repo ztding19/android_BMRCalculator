@@ -20,4 +20,9 @@
     <string name="result_BMI_string">BMI : </string>
     <string name="result_BMR_string">BMR : </string>
     <string name="btn_save_string">Save</string>
+
+    <string name="modify_title_string">Modifying Record</string>
+    <string name="btn_delete_string">Delete</string>
+    <string name="btn_confirm_string">Confirm</string>
+
 </resources>
