@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     String API_URL = "http://10.0.2.2/bmr/";
     String QUERY_PHP = "load_record.php";
     Button btnCreate;
+    Button btnRefresh;
     ListView dataList;
     String[] data = new String[]{
             "Name\nBMI, BMR"
@@ -53,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
+
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RefreshList();
+            }
+        });
+
         dataList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -68,11 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        RefreshList();
-    }
     //https://stackoverflow.com/questions/57697796/how-to-make-a-new-thread-android-studio
     //https://stackoverflow.com/questions/21278442/how-to-fetch-a-simple-json-data-in-android-from-php?rq=3
 
@@ -143,5 +147,6 @@ public class MainActivity extends AppCompatActivity {
     private void initViewElement(){
         dataList =(ListView)findViewById(R.id.dataList);
         btnCreate = (Button)findViewById(R.id.btnCreate);
+        btnRefresh = (Button) findViewById(R.id.btnRefresh);
     }
 }

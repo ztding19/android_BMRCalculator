@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">BMRCalculator</string>
     <string name="btn_create_string">Create</string>
+    <string name="btn_refresh_string">Refresh</string>
 
     <string name="creating_title_string">Creating Record</string>
     <string name="creating_name_string">Name : </string>
