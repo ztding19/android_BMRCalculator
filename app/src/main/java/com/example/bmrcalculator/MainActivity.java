@@ -38,36 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViewElement();
-        showList();
-        Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                String resp = loadURLData(API_URL + QUERY_PHP);
-                try {
-                    JSONArray items = new JSONArray(resp);
-                    ArrayList<String> dataFromJSON = new ArrayList<>();
-                    for(int i = 0; i < items.length(); i++) {
-                        JSONObject item = items.getJSONObject(i);
-                        dataFromJSON.add(item.getString("Name").toString() + "\n" + item.getString("BMI").toString() + ", " + item.getString("BMR"));
-                    }
-                    data = dataFromJSON.toArray(data);
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            showList();
-                        }
-                    });
-                }
-                catch (JSONException ex) {
-                    Log.d("ReadPhpException", ex.toString());
-                }
-            }
-        };
-        Thread thread = new Thread(runnable);
-        thread.start();
-
-        //loadURLData(API_URL + QUERY_PHP);
+        RefreshList();
 
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
@@ -126,19 +97,36 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class RunnableCallable implements Callable<ArrayList<JSONObject>>, Runnable {
-        String _path;
-        private ArrayList<JSONObject> record_list = new ArrayList<>();
-
-        @Override
-        public void run() {
-        }
-
-        @Override
-        public ArrayList<JSONObject> call() throws Exception {
-            return null;
-        }
+    private void RefreshList(){
+        Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                String resp = loadURLData(API_URL + QUERY_PHP);
+                try {
+                    JSONArray items = new JSONArray(resp);
+                    ArrayList<String> dataFromJSON = new ArrayList<>();
+                    for(int i = 0; i < items.length(); i++) {
+                        JSONObject item = items.getJSONObject(i);
+                        dataFromJSON.add(item.getString("Name").toString() + "\n" + item.getString("BMI").toString() + ", " + item.getString("BMR"));
+                    }
+                    data = dataFromJSON.toArray(data);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            showList();
+                        }
+                    });
+                }
+                catch (JSONException ex) {
+                    Log.d("ReadPhpException", ex.toString());
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
+
 
     private void initViewElement(){
         dataList =(ListView)findViewById(R.id.dataList);
