@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -46,7 +47,8 @@ public class ResultActivity extends AppCompatActivity {
                         BMR = 655f + (9.6f * weight + 1.8f * height - 4.7f * age);
                     textBMR.setText(String.format("%.2f", BMR));
                 }catch (Exception e){
-                    Toast.makeText(ResultActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
+                    //Toast.makeText(ResultActivity.this, e.getMessage(), Toast.LENGTH_SHORT);
+                    Log.d("ResultDisplay", e.toString());
                 }
             }
         }

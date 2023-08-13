@@ -12,7 +12,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+
 public class CreateActivity extends AppCompatActivity {
+    String API_URL = "http://10.0.2.2/bmr/";
+    String INSERT_PHP = "insert_record.php";
     EditText inputName;
     EditText inputAge;
     EditText inputHeight;
